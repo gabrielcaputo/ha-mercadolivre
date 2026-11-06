@@ -1,0 +1,156 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mercado Livre",
+        "description": "Log in to mercadolivre.com.br and paste the value of the `ssid` cookie (or the whole Cookie header). See the README for how to find it. Use the User-Agent of the same browser so the session looks consistent.",
+        "data": {
+          "name": "Account name",
+          "ssid": "Session cookie (ssid)",
+          "user_agent": "Browser User-Agent (optional)"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid or expired session cookie.",
+      "cannot_connect": "Could not reach Mercado Livre."
+    },
+    "abort": {
+      "already_configured": "Mercado Livre is already set up. Add more accounts with \"Add account\" on the integration page.",
+      "single_instance_allowed": "Mercado Livre is already set up. Add more accounts with \"Add account\" on the integration page."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "to_receive": {
+        "name": "Packages to receive"
+      },
+      "to_receive_today": {
+        "name": "Packages arriving today"
+      },
+      "delivered_recently": {
+        "name": "Delivered in the last 7 days"
+      },
+      "status": {
+        "name": "Status",
+        "state": {
+          "pending": "Pending",
+          "handling": "Being prepared",
+          "ready_to_ship": "Ready to ship",
+          "shipped": "On the way",
+          "out_for_delivery": "Out for delivery",
+          "delivered": "Delivered",
+          "not_delivered": "Not delivered",
+          "cancelled": "Cancelled",
+          "unknown": "Unknown"
+        }
+      },
+      "eta": {
+        "name": "Expected delivery"
+      },
+      "tracking": {
+        "name": "Tracking"
+      },
+      "place": {
+        "name": "Location"
+      },
+      "session": {
+        "name": "Session",
+        "state": {
+          "ok": "OK",
+          "expired": "Expired",
+          "blocked": "Blocked by Mercado Livre",
+          "error": "Error"
+        }
+      },
+      "account_to_receive": {
+        "name": "Packages to receive"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "name": "Position",
+        "state": {
+          "not_home": "On the way",
+          "home": "At home"
+        }
+      }
+    },
+    "text": {
+      "shared_link": {
+        "name": "Shared tracking link"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "description": "Requests are kept slow and irregular to look like a person using the website.",
+        "data": {
+          "quiet_hours": "Pause between 0:00 and 7:00 (unless a package is out for delivery)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "account": {
+      "entry_type": "Mercado Livre account",
+      "initiate_flow": {
+        "user": "Add account"
+      },
+      "step": {
+        "user": {
+          "title": "Mercado Livre account",
+          "description": "Log in to mercadolivre.com.br and paste the value of the `ssid` cookie (or the whole Cookie header). See the README for how to find it. Use the User-Agent of the same browser so the session looks consistent.",
+          "data": {
+            "name": "Account name",
+            "ssid": "Session cookie (ssid)",
+            "user_agent": "Browser User-Agent (optional)"
+          }
+        },
+        "reconfigure": {
+          "title": "Update account",
+          "description": "Log in to mercadolivre.com.br again with this account and paste the new `ssid` cookie.",
+          "data": {
+            "name": "Account name",
+            "ssid": "Session cookie (ssid)",
+            "user_agent": "Browser User-Agent (optional)"
+          }
+        }
+      },
+      "error": {
+        "invalid_auth": "Invalid or expired session cookie.",
+        "cannot_connect": "Could not reach Mercado Livre."
+      },
+      "abort": {
+        "already_configured": "This account is already added.",
+        "reconfigure_successful": "Account updated.",
+        "wrong_account": "The cookie belongs to a different Mercado Livre account."
+      }
+    },
+    "summary": {
+      "entry_type": "Mercado Livre totals"
+    },
+    "deliveries": {
+      "entry_type": "Mercado Livre deliveries"
+    }
+  },
+  "issues": {
+    "session_expired": {
+      "title": "Mercado Livre session expired: {account}",
+      "description": "The session of the account \"{account}\" expired or was logged out, so its packages are no longer updated. Log in to mercadolivre.com.br with this account, copy the new `ssid` cookie and paste it in Settings → Devices & services → Mercado Livre → {account} → ⋮ → Reconfigure."
+    }
+  },
+  "exceptions": {
+    "invalid_link": {
+      "message": "This is not a Mercado Livre shared tracking link (…/post-purchase/shared-tracking/…)."
+    },
+    "link_failed": {
+      "message": "Could not open the shared tracking link: {error}"
+    },
+    "shipment_not_found": {
+      "message": "The link does not match any package out for delivery."
+    }
+  }
+}

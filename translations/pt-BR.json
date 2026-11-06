@@ -1,0 +1,156 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Mercado Livre",
+        "description": "Entre em mercadolivre.com.br e cole o valor do cookie `ssid` (ou o cabeçalho Cookie inteiro). Veja no README como encontrá-lo. Use o User-Agent do mesmo navegador para a sessão parecer uma só.",
+        "data": {
+          "name": "Nome da conta",
+          "ssid": "Cookie de sessão (ssid)",
+          "user_agent": "User-Agent do navegador (opcional)"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Cookie de sessão inválido ou expirado.",
+      "cannot_connect": "Não foi possível conectar ao Mercado Livre."
+    },
+    "abort": {
+      "already_configured": "O Mercado Livre já está configurado. Adicione mais contas com \"Adicionar conta\" na página da integração.",
+      "single_instance_allowed": "O Mercado Livre já está configurado. Adicione mais contas com \"Adicionar conta\" na página da integração."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "to_receive": {
+        "name": "Pacotes a receber"
+      },
+      "to_receive_today": {
+        "name": "Pacotes a receber hoje"
+      },
+      "delivered_recently": {
+        "name": "Entregues nos últimos 7 dias"
+      },
+      "status": {
+        "name": "Status",
+        "state": {
+          "pending": "Pendente",
+          "handling": "Em preparação",
+          "ready_to_ship": "Pronto para envio",
+          "shipped": "A caminho",
+          "out_for_delivery": "Saiu para entrega",
+          "delivered": "Entregue",
+          "not_delivered": "Não entregue",
+          "cancelled": "Cancelado",
+          "unknown": "Desconhecido"
+        }
+      },
+      "eta": {
+        "name": "Previsão de entrega"
+      },
+      "tracking": {
+        "name": "Rastreio"
+      },
+      "place": {
+        "name": "Localização"
+      },
+      "session": {
+        "name": "Sessão",
+        "state": {
+          "ok": "OK",
+          "expired": "Expirada",
+          "blocked": "Bloqueada pelo Mercado Livre",
+          "error": "Erro"
+        }
+      },
+      "account_to_receive": {
+        "name": "Pacotes a receber"
+      }
+    },
+    "device_tracker": {
+      "location": {
+        "name": "Posição",
+        "state": {
+          "not_home": "A caminho",
+          "home": "Em casa"
+        }
+      }
+    },
+    "text": {
+      "shared_link": {
+        "name": "Link de rastreio compartilhado"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opções",
+        "description": "As consultas são lentas e irregulares para parecer uma pessoa usando o site.",
+        "data": {
+          "quiet_hours": "Pausar entre 0h e 7h (exceto se um pacote estiver saindo para entrega)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "account": {
+      "entry_type": "Conta do Mercado Livre",
+      "initiate_flow": {
+        "user": "Adicionar conta"
+      },
+      "step": {
+        "user": {
+          "title": "Conta do Mercado Livre",
+          "description": "Entre em mercadolivre.com.br e cole o valor do cookie `ssid` (ou o cabeçalho Cookie inteiro). Veja no README como encontrá-lo. Use o User-Agent do mesmo navegador para a sessão parecer uma só.",
+          "data": {
+            "name": "Nome da conta",
+            "ssid": "Cookie de sessão (ssid)",
+            "user_agent": "User-Agent do navegador (opcional)"
+          }
+        },
+        "reconfigure": {
+          "title": "Atualizar conta",
+          "description": "Entre novamente em mercadolivre.com.br com esta conta e cole o novo cookie `ssid`.",
+          "data": {
+            "name": "Nome da conta",
+            "ssid": "Cookie de sessão (ssid)",
+            "user_agent": "User-Agent do navegador (opcional)"
+          }
+        }
+      },
+      "error": {
+        "invalid_auth": "Cookie de sessão inválido ou expirado.",
+        "cannot_connect": "Não foi possível conectar ao Mercado Livre."
+      },
+      "abort": {
+        "already_configured": "Esta conta já foi adicionada.",
+        "reconfigure_successful": "Conta atualizada.",
+        "wrong_account": "O cookie pertence a outra conta do Mercado Livre."
+      }
+    },
+    "summary": {
+      "entry_type": "Totais do Mercado Livre"
+    },
+    "deliveries": {
+      "entry_type": "Entregas do Mercado Livre"
+    }
+  },
+  "issues": {
+    "session_expired": {
+      "title": "Sessão do Mercado Livre expirou: {account}",
+      "description": "A sessão da conta \"{account}\" expirou ou foi encerrada, e os pacotes dela não estão sendo atualizados. Entre em mercadolivre.com.br com essa conta, copie o novo cookie `ssid` e cole em Configurações → Dispositivos e serviços → Mercado Livre → {account} → ⋮ → Reconfigurar."
+    }
+  },
+  "exceptions": {
+    "invalid_link": {
+      "message": "Isso não é um link de rastreio compartilhado do Mercado Livre (…/post-purchase/shared-tracking/…)."
+    },
+    "link_failed": {
+      "message": "Não foi possível abrir o link de rastreio: {error}"
+    },
+    "shipment_not_found": {
+      "message": "O link não corresponde a nenhum pacote saindo para entrega."
+    }
+  }
+}
