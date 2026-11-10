@@ -123,6 +123,8 @@ class Package:
     pack_id: str | None = None
     item_title: str | None = None
     item_info: str | None = None
+    # Every product in the pack, as {"title", "image"} (first one = item_title).
+    products: list[dict[str, str | None]] = field(default_factory=list)
     image: str | None = None
     status_url: str | None = None
     seller: str | None = None
@@ -702,23 +704,20 @@ def _apply_status_header(package: Package, page: Any) -> None:
         elif ui_type == "typography" and title is None:
             title = _text(brick) or None
 
-    # Products of this pack: the thumbnails' alt texts.
+    # Products of this pack: one thumbnail each, the name in its alt text.
     products = [
-        alt
+        {"title": alt.strip(), "image": data.get("path") if isinstance(data.get("path"), str) else None}
         for img in _bricks(header, "image")
-        if isinstance(alt := img.get("data", {}).get("alt"), str) and alt.strip()
+        if isinstance(alt := (data := img.get("data", {})).get("alt"), str) and alt.strip()
     ]
     if products:
-        package.item_title = products[0].strip()
-        package.item_info = f"+{len(products) - 1} produto(s)" if len(products) > 1 else None
-        if path := next(
-            (
-                p
-                for img in _bricks(header, "image")
-                if isinstance(p := img.get("data", {}).get("path"), str)
-            ),
-            None,
-        ):
+        package.products = products
+        package.item_title = products[0]["title"]
+        extra = len(products) - 1
+        package.item_info = (
+            f"+{extra} produto{'s' if extra > 1 else ''}" if extra else None
+        )
+        if path := next((p["image"] for p in products if p["image"]), None):
             package.image = path
     if title and title == package.item_title:
         title = None

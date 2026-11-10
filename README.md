@@ -16,7 +16,7 @@ sai para entrega, a **posição do motorista no mapa**.
 |---|---|---|
 | Pacotes a receber | quantidade | `packages`: lista dos pendentes |
 | Pacotes a receber hoje | quantidade | `packages` |
-| Entregues nos últimos 7 dias | quantidade | `packages`: item, conta, data, imagem, link |
+| Entregues nos últimos 7 dias | quantidade | `packages`: item, item_info, products, conta, data, imagem, link |
 | Link de rastreio compartilhado | (texto) | cole aqui um link de rastreio compartilhado pelo app |
 
 **Por conta:** Sessão (`ok`, `expired`, `blocked`, `error`) e Pacotes a receber.
@@ -25,7 +25,7 @@ sai para entrega, a **posição do motorista no mapa**.
 
 | Entidade | O que mostra |
 |---|---|
-| Status | `pending`, `handling`, `ready_to_ship`, `shipped`, `out_for_delivery`, `delivered`, `not_delivered`, `cancelled` |
+| Status | `pending`, `handling`, `ready_to_ship`, `shipped`, `out_for_delivery`, `delivered`, `not_delivered`, `cancelled`. Atributos: `item` (1º produto), `item_info` ("+1 produto" quando o pacote tem mais de um), `products` (todos os produtos do pacote: `title`, `image`), textos e passos da página da compra |
 | Previsão de entrega | data prometida (atributos com o texto e a janela de horário) |
 | Rastreio | último evento do rastreio |
 | Localização | último local informado |

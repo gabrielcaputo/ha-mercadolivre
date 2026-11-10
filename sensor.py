@@ -32,6 +32,8 @@ def _summary(package: Package) -> dict[str, Any]:
     last = package.last_event
     return {
         "item": package.item_title,
+        "item_info": package.item_info,
+        "products": package.products,
         "account": package.account,
         "status": package.status,
         "headline": package.headline,
@@ -143,6 +145,8 @@ class DeliveredRecentlySensor(SummaryEntity, SensorEntity):
             "packages": [
                 {
                     "item": p.item_title,
+                    "item_info": p.item_info,
+                    "products": p.products,
                     "account": p.account,
                     "delivered_on": _iso(p.delivered_on),
                     "image": p.image,
@@ -220,6 +224,7 @@ class PackageStatusSensor(PackageEntity, SensorEntity):
             "item": package.item_title,
             "account": package.account,
             "item_info": package.item_info,
+            "products": package.products,
             "seller": package.seller,
             "intro": package.intro,
             "headline": package.headline,

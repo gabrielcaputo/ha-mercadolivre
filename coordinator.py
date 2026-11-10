@@ -594,6 +594,7 @@ def _carry_over(package: Package, previous: Package) -> None:
     package.shipment_id = package.shipment_id or previous.shipment_id
     package.item_title = package.item_title or previous.item_title
     package.item_info = previous.item_info
+    package.products = previous.products
     package.image = package.image or previous.image
     package.raw_status = previous.raw_status
     package.sub_status = previous.sub_status
